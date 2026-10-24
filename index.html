@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaGestión — Roadmap Propuesto y Presupuesto · The Pool Guy</title>
+<style>
+  :root{
+    --deep:#0a3d62; --mid:#1e6f9f; --aqua:#2bb6c9; --light:#e8f6f9;
+    --ink:#122a34; --muted:#5b7684; --ok:#1aa179; --soft:#f4fafb;
+    --line:#d8ebef; --warn:#e4a11b; --gift:#c0392b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--soft);line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px 64px}
+
+  header.hero{
+    background:linear-gradient(135deg,var(--deep),var(--mid) 55%,var(--aqua));
+    color:#fff;padding:30px 24px 28px;text-align:center;border-radius:0;
+  }
+  .hero .brand{font-size:22px;font-weight:800;letter-spacing:.4px}
+  .hero .brand span{opacity:.75;font-weight:500}
+  .hero .desc{font-size:13px;opacity:.82;margin-top:3px}
+  .hero .htitle{font-size:27px;font-weight:800;margin-top:16px;letter-spacing:.3px}
+  .hero .meta{font-size:13px;opacity:.75;margin-top:4px}
+  .lead-intro{font-size:15px;color:var(--muted);margin-top:26px;max-width:640px}
+
+  section{margin-top:40px}
+  h2{font-size:22px;color:var(--deep);display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  h2 .ic{font-size:23px}
+  .sub{color:var(--muted);font-size:14.5px;margin-bottom:18px;max-width:640px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px}
+  .stack{display:flex;flex-direction:column;gap:12px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 17px;}
+  .card .t{font-weight:700;font-size:15.5px;display:flex;align-items:center;gap:8px}
+  .card .d{color:var(--muted);font-size:13.5px;margin-top:6px}
+  .tick{color:var(--ok);font-weight:800}
+
+  .card.adj{border-left:4px solid var(--aqua)}
+  .card.adj .t .e{font-size:17px}
+
+  .tl{position:relative;margin-left:8px;padding-left:28px;border-left:3px solid var(--line)}
+  .step{position:relative;padding:2px 0 24px}
+  .step:last-child{padding-bottom:0}
+  .dot{position:absolute;left:-38px;top:1px;width:24px;height:24px;border-radius:50%;
+       display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:800}
+  .d-done{background:var(--ok)} .d-now{background:var(--mid)} .d-next{background:var(--aqua)} .d-fut{background:#9db7c1}
+  .step .badge{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;
+       letter-spacing:.4px;padding:3px 9px;border-radius:20px;margin-bottom:6px}
+  .b-done{background:#def5ee;color:var(--ok)} .b-now{background:#e1eff7;color:var(--mid)}
+  .b-next{background:#e2f6f9;color:#128293} .b-fut{background:#eef2f4;color:var(--muted)}
+  .step .h{font-weight:700;font-size:16.5px}
+  .step .p{color:var(--muted);font-size:13.5px;margin-top:4px}
+  .step ul{margin:8px 0 0 2px;padding:0;list-style:none}
+  .step ul li{font-size:13px;color:var(--muted);padding:2px 0 2px 18px;position:relative}
+  .step ul li:before{content:"•";position:absolute;left:3px;color:var(--aqua);font-weight:800}
+
+  .price-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .price-top{background:linear-gradient(135deg,var(--mid),var(--aqua));color:#fff;padding:26px;text-align:center}
+  .price-top .founder{display:inline-block;background:rgba(255,255,255,.2);font-size:11px;font-weight:700;
+       text-transform:uppercase;letter-spacing:.5px;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+  .price-top .amt{font-size:42px;font-weight:800;line-height:1}
+  .price-top .amt small{font-size:16px;font-weight:600;opacity:.85}
+  .price-body{padding:20px 22px}
+  .price-body .lead{font-size:14.5px;color:var(--ink);margin-bottom:12px}
+  .inc{margin:0;padding:0}
+  .inc li{list-style:none;display:flex;gap:11px;padding:9px 0;font-size:14.5px;border-bottom:1px dashed var(--line)}
+  .inc li:last-child{border-bottom:none}
+  .inc .i{color:var(--ok);font-weight:800;flex:none;font-size:15px}
+  .inc li.gift .i{color:var(--gift)}
+  .inc li.gift b{color:var(--deep)}
+
+  .saas{background:var(--light);border-radius:14px;padding:18px 20px;margin-top:16px;font-size:14.5px;color:var(--ink)}
+  .saas b{color:var(--deep)}
+  .modules{margin-top:14px;font-size:13.5px;color:var(--muted)}
+  .modules b{color:var(--ink)}
+
+  .offer{background:linear-gradient(135deg,#fff7e6,#fff);border:1px solid #f0d9a8;border-radius:16px;padding:18px 20px;margin-top:16px}
+  .offer .ob{display:inline-block;background:var(--warn);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:4px 11px;border-radius:20px;margin-bottom:13px}
+  .offer .rows{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .offer .r{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .offer .r.nov{border-color:#f0d9a8;background:#fffdf7}
+  .offer .r .lab{font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+  .offer .r .val{font-size:23px;font-weight:800;color:var(--deep);margin-top:3px}
+  .offer .r .val small{font-size:13px;font-weight:600;color:var(--muted)}
+  .offer .cond{font-size:13.5px;color:var(--ink)}
+  .offer .cond b{color:var(--deep)}
+
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--aqua);
+        border-radius:10px;padding:14px 16px;font-size:14px;color:var(--muted);margin-top:18px}
+  footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+  @media(max-width:520px){ .hero .htitle{font-size:23px} .hero .brand{font-size:19px} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="brand">💧 AquaGestión <span>· The Pool Guy</span></div>
+  <div class="desc">El sistema de gestión de tu negocio</div>
+  <div class="htitle">Roadmap Propuesto y Presupuesto</div>
+  <div class="meta">Octubre 2026</div>
+</header>
+
+<div class="wrap">
+
+  <p class="lead-intro">AquaGestión es el sistema hecho a tu medida para manejar clientes, rutas y equipo — todo en un lugar, desde el celu o la compu.</p>
+
+  <section>
+    <h2><span class="ic">✅</span>Lo que ya tenés funcionando</h2>
+    <div class="sub">Todo esto está en producción y lo usás hoy.</div>
+    <div class="grid">
+      <div class="card"><div class="t"><span class="tick">✓</span> Clientes y piletas</div><div class="d">Ficha de cada cliente con sus piletas, dirección, zona y frecuencia. Historial de cada visita, alta rápida en lote y etiquetas de colores para organizarlos.</div></div>
+      <div class="card"><div class="t"><span class="tick">✓</span> Agenda automática</div><div class="d">Las visitas se generan solas según la frecuencia de cada pileta (semanal / quincenal / mensual) y las ves en un calendario por semana o mes. Marcás hechas o no hechas, filtrás por técnico y reprogramás una sin que se corra la quincena.</div></div>
+      <div class="card"><div class="t"><span class="tick">✓</span> Empleados por rol</div><div class="d">Cada empleado entra con su propio usuario. Vos (dueño) y el jefe de cuadrilla ven toda la agenda; el técnico ve solo las visitas que se le asignan.</div></div>
+      <div class="card"><div class="t"><span class="tick">✓</span> Cuadrillas</div><div class="d">Tus 2 cuadrillas con su jefe, organizadas para repartir el trabajo del día.</div></div>
+      <div class="card"><div class="t"><span class="tick">✓</span> Etiquetas</div><div class="d">Rotulás clientes con colores (semanal, productos, lo que necesites) y los filtrás al toque.</div></div>
+      <div class="card"><div class="t"><span class="tick">✓</span> Seguro y en la nube</div><div class="d">Tus datos aislados, protegidos y respaldados, accesibles desde cualquier dispositivo con tu usuario.</div></div>
+    </div>
+    <div class="note" style="background:var(--light);color:var(--ink);border-left-width:5px">📋 <b>Lo importante ahora es cerrar bien los módulos que ya tenés.</b> Para eso te voy a compartir un <b>checklist de aceptación y cierre</b> por módulo: marcás qué está OK y qué necesita un ajuste —o me contás qué te pasa con cada uno—, lo <b>revisamos juntos en detalle</b>, y cuando queda validado damos ese módulo por <b>cerrado</b>. Recién ahí avanzamos. Hoy estamos en la <b>Etapa 2</b>: cerrar y afinar lo que ya está funcionando.</div>
+  </section>
+
+  <section>
+    <h2><span class="ic">👥</span>Quién hace qué</h2>
+    <div class="sub">El sistema organiza el trabajo y te da las herramientas; las decisiones las toman las personas. Cada rol tiene su tarea:</div>
+    <div class="grid">
+      <div class="card"><div class="t">👑 Dueño (vos)</div><div class="d">Ves todo. Das de alta clientes, piletas y empleados, armás la agenda y mirás los números.</div></div>
+      <div class="card"><div class="t">🧢 Jefe de cuadrilla</div><div class="d">Organiza el día y asigna qué pileta limpia cada empleado.</div></div>
+      <div class="card"><div class="t">🧰 Técnico</div><div class="d">Ve solo las piletas que le asignan y carga su trabajo — sin el ruido de las de los demás.</div></div>
+    </div>
+    <div class="note">🔑 El sistema no adivina quién limpia cada pileta: eso lo decide el jefe de cuadrilla asignándola. Gracias a eso, cada empleado ve solo lo suyo y no se marea con las del resto. Es importante que cada uno cumpla su parte para que el sistema rinda como esperás: cuando el jefe de cuadrilla asigna y el técnico registra cada visita, el sistema pasa a ser la <b>fuente de verdad de todo el servicio que prestás</b>. Ese es el objetivo.</div>
+  </section>
+
+  <section>
+    <h2><span class="ic">📋</span>Sobre tu brief — ajustes al plan</h2>
+    <div class="sub">Tu <b>Brief Técnico</b> está buenísimo — con el negocio, los números, los procesos y hasta las reglas. Pocos clientes dan algo así. Sobre ese documento, estos son los ajustes para bajarlo a lo que ya tenés construido:</div>
+    <div class="stack">
+      <div class="card adj"><div class="t"><span class="e">👥</span> Clientes duplicados</div><div class="d">En vez de pedir DNI (un bardo en la calle): mientras escribís el nombre de un cliente nuevo, el sistema te va mostrando los que ya existen con un nombre parecido — así no cargás dos veces al mismo.</div></div>
+      <div class="card adj"><div class="t"><span class="e">🎯</span> Arrancamos por sacarte del papel</div><div class="d">Primero afinamos lo que usás todos los días, y después la carga de la visita desde el celu — que es el doble trabajo que marcás en tu brief (anotar en papel en la calle y pasarlo a la compu a fin de mes).</div></div>
+      <div class="card adj"><div class="t"><span class="e">📅</span> "Ruta automática": tenés la agenda, falta el recorrido</div><div class="d">En tu brief, la "ruta automática" junta dos cosas. Una ya la tenés: las visitas se generan solas por frecuencia y las ves en un calendario, con reprogramación. La otra —el orden del recorrido por cercanía (qué pileta primero para no cruzar la ciudad)— todavía no está: necesita un servicio de mapas, cargar la ubicación exacta de cada pileta (recolección de datos) y sentarnos a definir bien qué necesitás para acotar el alcance. Ya la ubicamos en el roadmap (Etapa 4).</div></div>
+      <div class="card adj"><div class="t"><span class="e">🧾</span> Cobranzas y saldos</div><div class="d">En tu brief lo ponés temprano. Es el módulo más grande y el de mayor desafío técnico, así que lo dejamos para el final, cuando todo el resto esté redondo. Mientras tanto, seguís cobrando como hasta ahora.</div></div>
+      <div class="card adj"><div class="t"><span class="e">👷</span> El "encargado" de la camioneta 2 (tu hermano)</div><div class="d">En tu brief lo llamás "encargado"; en el sistema ese rol hoy es el <b>jefe de cuadrilla</b> (así se carga tu hermano): puede ver los clientes y asignar el trabajo. Hoy están cargados tus ~70 clientes; los ~44 de él todavía no. Si alcanza con que ambos vean todo, es solo cargar los de su cuadrilla. Si en cambio querés que cada camioneta vea solo los suyos, eso es un desarrollo aparte que sumamos al roadmap.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ic">🗺️</span>El camino</h2>
+    <div class="sub">Vamos módulo por módulo. Cada etapa se cierra cuando vos la validás, y recién ahí avanzamos a la siguiente.</div>
+    <div class="tl">
+      <div class="step">
+        <span class="dot d-done">✓</span>
+        <div class="badge b-done">Hecho</div>
+        <div class="h">Etapa 1 · Base operativa</div>
+        <div class="p">La columna vertebral de tu día a día, funcionando.</div>
+        <ul><li>Clientes, piletas e historial</li><li>Rutas automáticas por frecuencia</li><li>Empleados, cuadrillas y etiquetas</li></ul>
+      </div>
+      <div class="step">
+        <span class="dot d-now">●</span>
+        <div class="badge b-now">Ahora</div>
+        <div class="h">Etapa 2 · Afinar lo que hay + evitar duplicados</div>
+        <div class="p">Pulir el uso diario y cerrar los detalles que van surgiendo de usarlo de verdad.</div>
+        <ul><li>Aviso de clientes repetidos</li><li>Ajustes finos de rutas y fichas</li><li>Lo que pida el uso real en la calle</li></ul>
+      </div>
+      <div class="step">
+        <span class="dot d-next">★</span>
+        <div class="badge b-next">Próximo salto</div>
+        <div class="h">Etapa 3 · Visita móvil — adiós al papel</div>
+        <div class="p">El corazón del cambio: el empleado carga la visita desde el celu, en el momento.</div>
+        <ul><li>pH, cloro, químicos y foto en el lugar</li><li>Una sola carga — no se pasa nada a mano después</li><li>Vos ves todo al instante, no a fin de mes</li></ul>
+      </div>
+      <div class="step">
+        <span class="dot d-fut">∙</span>
+        <div class="badge b-fut">Más adelante</div>
+        <div class="h">Etapa 4 · Recorrido y números</div>
+        <div class="p">Con la base redonda, afinamos el recorrido y empezás a ver el negocio con datos.</div>
+        <ul><li>Orden del recorrido por cercanía (la "ruta" optimizada) — usa un servicio de mapas (tipo Google Maps): se puede, pero es un servicio aparte y otro tipo de desarrollo</li><li>Panel de rentabilidad por cliente y por camioneta</li><li>Escalar a más camionetas sin depender de vos</li></ul>
+      </div>
+      <div class="step">
+        <span class="dot d-fut">∙</span>
+        <div class="badge b-fut">El horizonte</div>
+        <div class="h">Etapa 5 · Todo tu negocio en un solo lugar</div>
+        <div class="p">La última etapa, y la más grande: sumar la parte de plata y el resto de tu operación al sistema.</div>
+        <ul><li>Cobranzas y saldos dentro del sistema</li><li>Tus otras líneas: obras, ventas de piletas y bombas de calor</li></ul>
+      </div>
+    </div>
+    <div class="note">💡 <b>Cómo leer esto:</b> lo que se puede hacer hoy sale sobre lo que ya está construido. Las cosas grandes nuevas (visita móvil, cobranza) se arman como módulos propios, planificados, sin romper lo que ya funciona.</div>
+  </section>
+
+  <section>
+    <h2><span class="ic">💳</span>La propuesta</h2>
+    <div class="sub">Un solo abono mensual, estilo servicio: todo adentro, sin sorpresas.</div>
+    <div class="price-card">
+      <div class="price-body">
+        <div class="lead">El abono mensual incluye todo lo siguiente:</div>
+        <ul class="inc">
+          <li><span class="i">✓</span> Todo el sistema actual funcionando, y lo que se sume al mantenimiento.</li>
+          <li><span class="i">✓</span> Tu base de datos propia: tus clientes activos e inactivos, piletas, visitas e historial, todo en un solo lugar — respaldada, segura y exportable.</li>
+          <li><span class="i">✓</span> Infraestructura en la nube: servidores y base de datos pagos y administrados.</li>
+          <li><span class="i">✓</span> Backups semanales para garantizar el respaldo de tu información — tu base de datos siempre a salvo.</li>
+          <li><span class="i">✓</span> Funcionamiento 24/7, siempre online, sin que te preocupes por nada técnico.</li>
+          <li><span class="i">✓</span> Soporte: cualquier problema que te trabe, te lo resuelvo.</li>
+          <li><span class="i">✓</span> Te aviso cada mejora o novedad del sistema.</li>
+          <li class="gift"><span class="i">🎁</span> Implementación, migración y puesta en marcha — <b>bonificada</b>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="offer">
+      <span class="ob">🎁 Oferta de arranque</span>
+      <div class="rows">
+        <div class="r nov"><div class="lab">Noviembre · mes de arranque</div><div class="val">$15.000 <small>bonificado</small></div></div>
+        <div class="r"><div class="lab">Desde diciembre</div><div class="val">$65.000 <small>/ mes</small></div></div>
+      </div>
+    </div>
+    <div class="saas">
+      AquaGestión es un sistema a medida (SaaS): vive en la nube, se actualiza solo, lo usás desde el celu o la compu y crece con tu negocio. Es un <b>servicio vivo</b> que se mantiene, se respalda y mejora mes a mes — un sistema pensado para resolver las necesidades reales de tu día a día.
+    </div>
+    <div class="modules">🔧 <b>Los módulos grandes nuevos</b> (visita móvil, cobranza propia, panel de números) los charlamos, los definimos, los estimamos y los proyectamos juntos antes de arrancar cada uno.</div>
+    <div class="modules" style="color:var(--ok)">✅ En cambio, los <b>ajustes para dejar redondos los módulos que ya tenés</b> (los que salgan de la revisión de cierre) van <b>sin cargo</b> — es parte de cerrarlos bien.</div>
+  </section>
+
+  <footer>
+    AquaGestión para The Pool Guy · Hecho a medida 💧
+  </footer>
+
+</div>
+</body>
+</html>
